@@ -25,13 +25,13 @@ function FoodMenu({
   showMenu,
   id_category,
   selectCategory,
-  SaveDataMenuSetupFromDB
+  SaveDataCategoryMenuFromDB
 }) {
   const { loading, error, data } = useQuery(ALL_CATEGORYS);
   console.log(data);
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
-  SaveDataMenuSetupFromDB(data.categories);
+  SaveDataCategoryMenuFromDB(data.categories);
   if (showMenu === true) {
     return (
       <div className="card-container">
@@ -124,7 +124,7 @@ const mapDispatchToProps = dispatch => ({
       showMenu: true
     });
   },
-  SaveDataMenuSetupFromDB(categorys) {
+  SaveDataCategoryMenuFromDB(categorys) {
     dispatch({
       type: "RECEIVE_CATEGORYS_DB",
       db_categorys: categorys

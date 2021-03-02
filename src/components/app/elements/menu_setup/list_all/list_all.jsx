@@ -40,6 +40,7 @@ function ListAll({
       <div className="div_categorys_list_all">
         {data.categories
           .filter(a => a.id > 0)
+          .sort((b, c) => b.id - c.id)
           .map(d => (
             <div className="card_list_all" key={d.id}>
               <div className="order_card_list_all">
