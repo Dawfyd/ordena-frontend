@@ -16,8 +16,10 @@ const initialState = {
     }
   ],
   posts: [
+
     { id: -2, name: "Menú" },
     { id: -1, name: "Favoritos" }
+
   ],
   categorys_menu: [
     { id: 1, text: "Descuentos" },
@@ -597,6 +599,10 @@ const initialState = {
   select_codeqr: 0,
   add_spot: false,
   register_option: 0,
+
+  stated_register: 0,
+
+
   alt_food: [
     { id: 1, id_alt: 2, name: "Sal" },
     { id: 2, id_alt: 2, name: "Pimienta" },
@@ -772,9 +778,11 @@ const reducer = (state = initialState, action) => {
       if (length_posts_1 < 3) {
         return {
           ...state,
+
           posts: state.posts
             .concat(action.db_categorys)
             .sort((b, c) => b.id - c.id)
+
         };
         console.log(state.posts);
       }
@@ -1140,6 +1148,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         register_option: action.register_option
       };
+
+    case "CLICK_NEXT":
+      return {
+        ...state,
+        stated_register: action.stated_register,
+      };
+    case "CLICK_RETURN":
+      return {
+        ...state,
+        stated_register: action.stated_register,
+      };
+
     case "CLICK_PAID":
       const index_paid = state.orders.findIndex(
         orders => orders.id === action.user_paid

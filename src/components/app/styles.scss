@@ -7,6 +7,7 @@
 @import "elements/register_user_option/register_user/_register_user.scss";
 @import "elements/register_user_option/register_anonymous/_register_anonymous.scss";
 @import "elements/register_user_option/login_user/_login_user.scss";
+@import "elements/register_admin/_register_admin.scss";
 @import "elements/pre_order/_pre_order.scss";
 @import "elements/return/_return.scss";
 @import "elements/login/_login.scss";
@@ -45,6 +46,7 @@
 @import "elements/landing_page/home_landing/_home_landing.scss";
 @import "elements/options_header_admin/_options_header_admin.scss";
 @import "elements/options_header_landing/_options_header_landing.scss";
+@import "elements/header_register_admin/_header_register_admin.scss";
 @import "pages_user/turn/_turn.scss";
 @import "pages_user/register/_register.scss";
 @import "pages_user/home/_home.scss";
@@ -68,6 +70,7 @@
 @import "./pages_admin/cashier_setup/_cashier_admin.scss";
 @import "./pages_admin/spots_setup/_spots_setup.scss";
 @import "./pages_admin/home_admin/_home_admin.scss";
+@import "./pages_admin/register_admin/_register_admin.scss";
 @import "./ordena_pages/landing_page/_landing_page.scss";
 
 /*
