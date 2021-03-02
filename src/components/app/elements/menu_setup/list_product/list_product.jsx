@@ -569,9 +569,9 @@ function ListProduct({
         style={id_food === 0 ? { display: "none" } : { display: "grid" }}
       >
         {products
-          .filter(a => a.id_product === id_food)
+          .filter(a => a.id === id_food)
           .map(b => (
-            <div key={b.id_product}>
+            <div key={b.id}>
               {prices
                 .filter(c => c.product_id === id_food)
                 .map(d => (
@@ -601,8 +601,8 @@ function ListProduct({
                         onFinish={onFinish}
                         initialValues={{
                           "input-number": d.value_price,
-                          description_input: b.description_product,
-                          name_input: b.name_product
+                          description_input: b.description,
+                          name_input: b.name
                         }}
                       >
                         <div className="container_photo_product">
