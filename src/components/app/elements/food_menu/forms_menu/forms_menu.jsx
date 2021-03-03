@@ -6,7 +6,7 @@ import Form2 from "../form_2/form_2.jsx";
 import Form3 from "../form_3/form_3.jsx";
 
 function Forms_food({ id_food, showCart, show_food, orderList, showMenu }) {
-  return show_food.map((b) => (
+  return show_food.map(b => (
     <div key={b.id}>
       <div>
         <Form1 />
@@ -22,7 +22,10 @@ function Forms_food({ id_food, showCart, show_food, orderList, showMenu }) {
       </div>
       <div className="buttons_order">
         <div className="button_space">
-          <button className="button_request" onClick={() => showCart(b)}>
+          <button
+            className="button_request_form_menu"
+            onClick={() => showCart(b)}
+          >
             Añadir
           </button>
         </div>

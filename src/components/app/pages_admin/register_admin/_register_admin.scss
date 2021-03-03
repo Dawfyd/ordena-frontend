@@ -32,7 +32,16 @@
 }
 
 @media only screen and (min-device-width: 600px) and (max-device-width: 899px) {
-  .options_header_admin_home {
+  .logo_header_register_admin {
+    display: block;
+    position: absolute;
+    top: 0vh;
+    left: 0vw;
+    width: 25vw;
+    height: 8vh;
+    padding-left: 20px;
+  }
+  .options_header_register_admin {
     position: absolute;
     display: none;
     height: 8vh;
@@ -41,6 +50,15 @@
   }
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .logo_header_register_admin {
+    display: block;
+    position: absolute;
+    top: 0vh;
+    left: 0vw;
+    width: 30vw;
+    height: 9vh;
+    padding: 5px;
+  }
   .options_header_register_admin {
     position: absolute;
     display: none;

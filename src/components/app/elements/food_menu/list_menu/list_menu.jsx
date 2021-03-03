@@ -1,5 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useQuery, gql } from "@apollo/client";
+
+const ALL_PRODUCTS = gql`
+  query {
+    products(findAllProductInput: { companyUuid: "f9U4JIdp6RKKvPCeAkhr_" }) {
+      id
+      name
+      image
+      avaliable
+      description
+      category {
+        id
+      }
+    }
+  }
+`;
 
 function TargetList({
   temp_category,
@@ -10,8 +26,15 @@ function TargetList({
   data_menu,
   showDish,
   posts,
-  favList
+  favList,
+  SaveDataProductsMenuFromDB,
+  products
 }) {
+  const { loading, error, data } = useQuery(ALL_PRODUCTS);
+  console.log(data);
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
+  SaveDataProductsMenuFromDB(data.products);
   if (id_category === -1) {
     return (
       <div>
@@ -20,7 +43,7 @@ function TargetList({
             <hr
               id="separator_title_card"
               style={
-                data_menu.filter(k => k.category === a.id - 1).length === 0
+                products.filter(k => k.category.id === a.id - 2).length === 0
                   ? { display: "none" }
                   : { display: "flex" }
               }
@@ -28,15 +51,15 @@ function TargetList({
             <p
               className="title_cards"
               style={
-                data_menu.filter(k => k.category === a.id - 1).length === 0
+                products.filter(k => k.category.id === a.id - 2).length === 0
                   ? { display: "none" }
                   : { display: "flex" }
               }
             >
               {a.text}
             </p>
-            {data_menu
-              .filter(k => k.category === a.id - 1)
+            {products
+              .filter(k => k.category.id === a.id - 2)
               .map(d => (
                 <button
                   className="link_card"
@@ -47,12 +70,12 @@ function TargetList({
                   <div className="card_list">
                     <div className="order_card">
                       <div>
-                        <img className="img_card" alt="example" src={d.photo} />
+                        <img className="img_card" alt="example" src={d.image} />
                       </div>
                       <div className="text">
                         <div>
-                          <div className="title">{d.product}</div>
-                          <div className="description">{d.msg}</div>
+                          <div className="title">{d.name}</div>
+                          <div className="description">{d.description}</div>
                           <div className="cost">
                             ${formatNumber(d.price)} COP
                           </div>
@@ -111,12 +134,12 @@ function TargetList({
           <div className="card_list">
             <div className="order_card">
               <div>
-                <img className="img_card" alt="example" src={d.photo} />
+                <img className="img_card" alt="example" src={d.image} />
               </div>
               <div className="text">
                 <div>
-                  <div className="title">{d.product}</div>
-                  <div className="description">{d.msg}</div>
+                  <div className="title">{d.name}</div>
+                  <div className="description">{d.description}</div>
                   <div className="cost">${formatNumber(d.price)} COP</div>
                 </div>
                 <div className="plus">
@@ -138,6 +161,7 @@ const mapStateToProps = state => ({
   id_category: state.id_category,
   data_menu: state.data_menu,
   posts: state.posts,
+  products: state.products,
   temp_menu: state.temp_menu,
   categorys_menu: state.categorys_menu,
   temp_category: state.temp_category,
@@ -154,6 +178,12 @@ const mapDispatchToProps = dispatch => ({
       type: "SHOW_DISH",
       showMenu: false,
       id_food: d.id
+    });
+  },
+  SaveDataProductsMenuFromDB(products) {
+    dispatch({
+      type: "RECEIVE_PRODUCTS_DB",
+      db_products: products
     });
   }
 });
