@@ -6,6 +6,7 @@ import RegisterUser from "../../elements/register_user_option/register_user/regi
 import RegisterAnonymous from "../../elements/register_user_option/register_anonymous/register_anonymous";
 import LoginUser from "../../elements/register_user_option/login_user/login_user";
 import LogoOrdena from "../../elements/logo_ordena/logo";
+import { Link } from "react-router-dom";
 
 function page({ props, id_spot_register, EnterPage, register_option }) {
   const CurrentRoute = window.location.pathname;
@@ -22,40 +23,49 @@ function page({ props, id_spot_register, EnterPage, register_option }) {
     <Fragment>
       <div className="page_register">
         <header className="header_register">
-          <LogoOrdena />
+          <Link to={"/"}>
+            <LogoOrdena />
+          </Link>
         </header>
-
-        <div
-          className="container_register_option"
-          style={
-            register_option === 0 ? { display: "block" } : { display: "none" }
-          }
-        >
-          <RegisterUserOption />
+        <div className="container_register_user">
+          <div
+            className="container_register_option"
+            style={
+              register_option === 0 ? { display: "block" } : { display: "none" }
+            }
+          >
+            <RegisterUserOption />
+          </div>
+          <div
+            className="container_register_option"
+            style={
+              register_option === 1 ? { display: "block" } : { display: "none" }
+            }
+          >
+            <RegisterUser />
+          </div>
+          <div
+            className="container_register_option"
+            style={
+              register_option === 2 ? { display: "block" } : { display: "none" }
+            }
+          >
+            <RegisterAnonymous />
+          </div>
+          <div
+            className="container_register_option"
+            style={
+              register_option === 3 ? { display: "block" } : { display: "none" }
+            }
+          >
+            <LoginUser />
+          </div>
         </div>
-        <div
-          className="container_register_option"
-          style={
-            register_option === 1 ? { display: "block" } : { display: "none" }
-          }
-        >
-          <RegisterUser />
-        </div>
-        <div
-          className="container_register_option"
-          style={
-            register_option === 2 ? { display: "block" } : { display: "none" }
-          }
-        >
-          <RegisterAnonymous />
-        </div>
-        <div
-          className="container_register_option"
-          style={
-            register_option === 3 ? { display: "block" } : { display: "none" }
-          }
-        >
-          <LoginUser />
+        <div className="view_not_available_register">
+          <p className="text_view_not_available_register">
+            Aplicación móvil solo disponible desde Smartphones o Tablets, Click
+            en el logo de Ordena para regresar.
+          </p>
         </div>
       </div>
     </Fragment>
