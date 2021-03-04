@@ -15,6 +15,15 @@ const ALL_PRODUCTS = gql`
         id
       }
     }
+    prices(findAllPricesInput: { companyUuid: "f9U4JIdp6RKKvPCeAkhr_" }) {
+      id
+      value
+      currency
+      product {
+        id
+        name
+      }
+    }
   }
 `;
 
@@ -24,13 +33,16 @@ function ListCategory({
   id_category,
   selectP,
   id_food,
-  SaveDataProductsSetupFromDB
+  SaveDataProductsSetupFromDB,
+  SaveDataPricesSetupFromDB
 }) {
   const { loading, error, data } = useQuery(ALL_PRODUCTS);
-  console.log(data, "productos");
+  console.log(data, "productos_list_category");
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
   SaveDataProductsSetupFromDB(data.products);
+
+  SaveDataPricesSetupFromDB(data.prices);
   return (
     <div className="container_list_category">
       {data.products
@@ -43,7 +55,7 @@ function ListCategory({
                 className="button_category_card"
                 key={b.id}
                 href="/dish"
-                onClick={() => selectProduct(b)}
+                onClick={() => selectProduct(b.id)}
               >
                 <div
                   className="flechita_list_category"
@@ -100,10 +112,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  selectProduct(b) {
+  selectProduct(pid) {
     dispatch({
       type: "SELECT_PRODUCT_SETUP",
-      id_food: b.id,
+      id_food: pid,
       create_product: false
     });
   },
@@ -118,6 +130,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch({
       type: "RECEIVE_PRODUCTS_DB",
       db_products: products
+    });
+  },
+  SaveDataPricesSetupFromDB(prices) {
+    dispatch({
+      type: "RECEIVE_PRICES_DB",
+      db_prices: prices
     });
   }
 });

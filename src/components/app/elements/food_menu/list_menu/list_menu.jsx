@@ -14,6 +14,21 @@ const ALL_PRODUCTS = gql`
         id
       }
     }
+    prices(findAllPricesInput: { companyUuid: "f9U4JIdp6RKKvPCeAkhr_" }) {
+      id
+      value
+      currency
+      product {
+        id
+        name
+        image
+        avaliable
+        description
+        category {
+          id
+        }
+      }
+    }
   }
 `;
 
@@ -28,13 +43,16 @@ function TargetList({
   posts,
   favList,
   SaveDataProductsMenuFromDB,
-  products
+  products,
+  prices,
+  SaveDataPricesSetupFromDB
 }) {
   const { loading, error, data } = useQuery(ALL_PRODUCTS);
-  console.log(data);
+  console.log(data, "data_products_prices_list_menu");
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
   SaveDataProductsMenuFromDB(data.products);
+  SaveDataPricesSetupFromDB(data.prices);
   if (id_category === -1) {
     return (
       <div>
@@ -58,8 +76,8 @@ function TargetList({
             >
               {a.text}
             </p>
-            {products
-              .filter(k => k.category.id === a.id - 2)
+            {prices
+              .filter(k => k.product.category.id === a.id - 2)
               .map(d => (
                 <button
                   className="link_card"
@@ -70,14 +88,21 @@ function TargetList({
                   <div className="card_list">
                     <div className="order_card">
                       <div>
-                        <img className="img_card" alt="example" src={d.image} />
+                        <img
+                          className="img_card"
+                          alt="example"
+                          src={d.product.image}
+                        />
                       </div>
                       <div className="text">
                         <div>
-                          <div className="title">{d.name}</div>
-                          <div className="description">{d.description}</div>
+                          <div className="title">{d.product.name}</div>
+                          <div className="description">
+                            {d.product.description}
+                          </div>
+
                           <div className="cost">
-                            ${formatNumber(d.price)} COP
+                            ${formatNumber(d.value)} COP
                           </div>
                         </div>
                         <div className="plus">
@@ -124,7 +149,7 @@ function TargetList({
   }
   return (
     <div>
-      {data_menu_f.map(d => (
+      {prices.map(d => (
         <button
           className="link_card"
           key={d.id}
@@ -134,13 +159,13 @@ function TargetList({
           <div className="card_list">
             <div className="order_card">
               <div>
-                <img className="img_card" alt="example" src={d.image} />
+                <img className="img_card" alt="example" src={d.product.image} />
               </div>
               <div className="text">
                 <div>
-                  <div className="title">{d.name}</div>
-                  <div className="description">{d.description}</div>
-                  <div className="cost">${formatNumber(d.price)} COP</div>
+                  <div className="title">{d.product.name}</div>
+                  <div className="description">{d.product.description}</div>
+                  <div className="cost">${formatNumber(d.value)} COP</div>
                 </div>
                 <div className="plus">
                   <button className="button_plus">+</button>
@@ -165,7 +190,8 @@ const mapStateToProps = state => ({
   temp_menu: state.temp_menu,
   categorys_menu: state.categorys_menu,
   temp_category: state.temp_category,
-  favList: state.favList
+  favList: state.favList,
+  prices: state.prices
 });
 
 function formatNumber(price_item) {
@@ -177,13 +203,19 @@ const mapDispatchToProps = dispatch => ({
     dispatch({
       type: "SHOW_DISH",
       showMenu: false,
-      id_food: d.id
+      id_food: d.product.id
     });
   },
   SaveDataProductsMenuFromDB(products) {
     dispatch({
       type: "RECEIVE_PRODUCTS_DB",
       db_products: products
+    });
+  },
+  SaveDataPricesSetupFromDB(prices) {
+    dispatch({
+      type: "RECEIVE_PRICES_DB",
+      db_prices: prices
     });
   }
 });

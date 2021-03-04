@@ -573,9 +573,9 @@ function ListProduct({
           .map(b => (
             <div key={b.id}>
               {prices
-                .filter(c => c.product_id === id_food)
+                .filter(c => c.product.id === id_food)
                 .map(d => (
-                  <div key={d.id_price}>
+                  <div key={d.id}>
                     {" "}
                     <Form.Provider
                       onFormFinish={(name, { values, forms }) => {
@@ -600,7 +600,7 @@ function ListProduct({
                         name="basicForm"
                         onFinish={onFinish}
                         initialValues={{
-                          "input-number": d.value_price,
+                          "input-number": d.value,
                           description_input: b.description,
                           name_input: b.name
                         }}

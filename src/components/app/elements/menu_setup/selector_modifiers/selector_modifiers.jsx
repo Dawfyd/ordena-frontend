@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {
   CaretRightFilled,
   CaretDownFilled,
-  PlusSquareFilled,
+  PlusSquareFilled
 } from "@ant-design/icons";
 
 function SelectorModifier({
@@ -14,7 +14,7 @@ function SelectorModifier({
   id_category,
   create_product,
   id_create_food,
-  adMods,
+  adMods
 }) {
   return (
     <div className="container_selector_modifier">
@@ -58,8 +58,8 @@ function SelectorModifier({
         >
           <div>
             {modifiers
-              .filter((b) => b.type_modifier === "P")
-              .map((p) =>
+              .filter(b => b.type_modifier === "P")
+              .map(p =>
                 p.code_modifier.includes(id_food) ? (
                   ""
                 ) : (
@@ -86,8 +86,8 @@ function SelectorModifier({
           </div>
           <div>
             {modifiers
-              .filter((b) => b.type_modifier === "C")
-              .map((p) =>
+              .filter(b => b.type_modifier === "C")
+              .map(p =>
                 p.code_modifier.includes(id_category) ? (
                   ""
                 ) : (
@@ -118,29 +118,29 @@ function SelectorModifier({
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   show_mods: state.show_mods,
   modifiers: state.modifiers,
   id_food: state.id_food,
   id_category: state.id_category,
   create_product: state.create_product,
-  id_create_food: state.id_create_food,
+  id_create_food: state.id_create_food
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   showMods() {
     dispatch({
       type: "SHOW_MODIFIERS",
-      something_to_show: 1,
+      something_to_show: 1
     });
   },
   adMods(p) {
     dispatch({
       type: "ADD_MODIFIERS",
       something_to_show: 1,
-      ids: p.id,
+      id_modifiers: p.id
     });
-  },
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectorModifier);

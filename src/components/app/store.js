@@ -16,10 +16,8 @@ const initialState = {
     }
   ],
   posts: [
-
     { id: -2, name: "Menú" },
     { id: -1, name: "Favoritos" }
-
   ],
   categorys_menu: [
     { id: 1, text: "Descuentos" },
@@ -29,179 +27,9 @@ const initialState = {
     { id: 5, text: "Para Compartir" },
     { id: 6, text: "Bebidas" }
   ],
-  categorys: [
-    { id: 1, name_category: "Adicionales", state_category: true, menu_id: 1 },
-    { id: 2, name_category: "Modificadores", state_category: true, menu_id: 1 },
-
-    { id: 3, name_category: "Entradas", state_category: true, menu_id: 1 },
-    {
-      id: 4,
-      name_category: "Platos Fuertes",
-      state_category: true,
-      menu_id: 1
-    },
-    {
-      id: 5,
-      name_category: "Para Compartir",
-      state_category: true,
-      menu_id: 1
-    },
-    { id: 6, name_category: "Bebidas", state_category: true, menu_id: 1 },
-    { id: 7, name_category: "Licores", state_category: true, menu_id: 1 },
-    { id: 8, name_category: "Postres", state_category: true, menu_id: 1 }
-  ],
+  categorys: [],
   products: [],
-  prices: [
-    {
-      id: 1,
-      value: 12000,
-      currency: "COP",
-      option: 1,
-      product_id: 1,
-      //state_button(cambiar button por otra cosa): false,//
-      //alt: "Foto de {name_product}",
-
-      id_price: 1,
-      value_price: 12000,
-
-      option_price: 1
-    },
-    {
-      id: 2,
-      value: 5000,
-      currency: "COP",
-      option: 1,
-      product_id: 2,
-      //state_button(cambiar button por otra cosa): false,//
-      //alt: "Foto de {name_product}",
-      id_price: 2,
-      value_price: 5000,
-      option_price: 1
-    },
-    {
-      id: 3,
-      value: 3000,
-      currency: "COP",
-      option: 1,
-      product_id: 3,
-      id_price: 3,
-      value_price: 3000,
-
-      option_price: 1
-    },
-    {
-      id: 4,
-      value: 500,
-      currency: "COP",
-      option: 1,
-      product_id: 4,
-      id_price: 4,
-      value_price: 500,
-      option_price: 1
-    },
-    {
-      id: 5,
-      value: 500,
-      currency: "COP",
-      option: 1,
-      product_id: 5,
-
-      id_price: 5,
-      value_price: 500,
-      option_price: 1
-    },
-    {
-      id: 6,
-      value: 6000,
-      currency: "COP",
-      option: 1,
-      product_id: 6,
-
-      id_price: 6,
-      value_price: 6000,
-      option_price: 1
-    },
-    {
-      id: 7,
-      value: 4000,
-      currency: "COP",
-      option: 1,
-      product_id: 7,
-
-      id_price: 7,
-      value_price: 4000,
-      option_price: 1
-    },
-    {
-      id: 8,
-      value: 8000,
-      currency: "COP",
-      option: 1,
-      product_id: 8,
-
-      id_price: 8,
-      value_price: 8000,
-      option_price: 1
-    },
-    {
-      id: 9,
-      value: 6000,
-      currency: "COP",
-      option: 1,
-      product_id: 9,
-
-      id_price: 9,
-      value_price: 6000,
-
-      option_price: 1
-    },
-    {
-      id: 10,
-      value: 18000,
-      currency: "COP",
-      option: 1,
-      product_id: 10,
-
-      id_price: 10,
-      value_price: 18000,
-      option_price: 1
-    },
-    {
-      id: 11,
-      value: 5000,
-      currency: "COP",
-      option: 1,
-      product_id: 11,
-
-      id_price: 11,
-      value_price: 5000,
-
-      option_price: 1
-    },
-    {
-      id: 12,
-      value: 4000,
-      currency: "COP",
-      option: 1,
-      product_id: 12,
-
-      id_price: 12,
-      value_price: 4000,
-
-      option_price: 1
-    },
-    {
-      id: 13,
-      value: 9000,
-      currency: "COP",
-      option: 1,
-      product_id: 13,
-
-      id_price: 13,
-      value_price: 9000,
-      option_price: 1
-    }
-  ],
+  prices: [],
   spots: [
     //data_tables
     {
@@ -587,6 +415,7 @@ const initialState = {
   id_category: -1,
   id_food: 0,
   show_food: [],
+  show_price: [],
   temp_menu: [],
   ud_cart: 0,
   price_cart: 0,
@@ -599,10 +428,7 @@ const initialState = {
   select_codeqr: 0,
   add_spot: false,
   register_option: 0,
-
   stated_register: 0,
-
-
   alt_food: [
     { id: 1, id_alt: 2, name: "Sal" },
     { id: 2, id_alt: 2, name: "Pimienta" },
@@ -624,7 +450,7 @@ const initialState = {
   registerList: [],
   modifiers: [
     {
-      id_modifier: 1,
+      id: 1,
       name_modifier: "Cebolla",
       state_modifier: true,
       id_product: 1,
@@ -634,7 +460,7 @@ const initialState = {
       string_modifier: " "
     },
     {
-      id_modifier: 2,
+      id: 2,
       name_modifier: "Tomate",
       state_modifier: true,
       id_product: 1,
@@ -644,7 +470,7 @@ const initialState = {
       string_modifier: " "
     },
     {
-      id_modifier: 3,
+      id: 3,
       name_modifier: "Lechuga",
       state_modifier: true,
       id_product: 1,
@@ -654,7 +480,7 @@ const initialState = {
       string_modifier: " "
     },
     {
-      id_modifier: 4,
+      id: 4,
       name_modifier: "Salsa de tomate",
       state_modifier: true,
       id_product: 1,
@@ -664,7 +490,7 @@ const initialState = {
       string_modifier: " "
     },
     {
-      id_modifier: 5,
+      id: 5,
       name_modifier: "Termino de carne",
       state_modifier: true,
       id_product: 1,
@@ -674,7 +500,7 @@ const initialState = {
       string_modifier: "Medio (1/2),Tres cuartos (3/4),Bien asado"
     },
     {
-      id_modifier: 6,
+      id: 6,
       name_modifier: "Sabor de helado",
       state_modifier: true,
       id_product: 13,
@@ -684,7 +510,7 @@ const initialState = {
       string_modifier: "Chocolate, Vainilla, Fresa"
     },
     {
-      id_modifier: 7,
+      id: 7,
       name_modifier: "Salsa de chocolate",
       state_modifier: true,
       id_product: 13,
@@ -772,7 +598,7 @@ const reducer = (state = initialState, action) => {
         ...state
       };
     case "RECEIVE_CATEGORYS_DB":
-      console.log(action.db_categorys);
+      console.log(action.db_categorys, "action categorys_store_pre_if");
       const length_posts_1 = state.posts.length;
       console.log(length_posts_1);
       if (length_posts_1 < 3) {
@@ -782,25 +608,42 @@ const reducer = (state = initialState, action) => {
           posts: state.posts
             .concat(action.db_categorys)
             .sort((b, c) => b.id - c.id)
-
         };
-        console.log(state.posts);
+        console.log(state.posts, "action categorys_store_inside_if");
       }
-      console.log(state.posts);
+      console.log(state.posts, "action category_store_final");
     case "RECEIVE_PRODUCTS_DB":
-      console.log(action.db_products);
+      console.log(action.db_products, "action products_store_pre_if");
       const length_products = state.products.length;
-      console.log(length_products);
-      if (length_products < 2) {
-        return {
-          ...state,
-          products: state.products
-            .concat(action.db_products)
-            .sort((b, c) => b.id - c.id)
-        };
-        console.log(state.products);
+      console.log(length_products, "length products_store");
+      if (length_products < 1) {
+        if (action.db_products !== undefined) {
+          return {
+            ...state,
+            products: state.products
+              .concat(action.db_products)
+              .sort((b, c) => b.id - c.id)
+          };
+          console.log(state.products, "action products_store_inside_if");
+        }
       }
-      console.log(state.products);
+      console.log(state.products, "action products_store_final");
+    case "RECEIVE_PRICES_DB":
+      console.log(action.db_prices, "action prices_store_pre_if");
+      const length_prices = state.prices.length;
+      console.log(length_prices, "length prices_store");
+      if (length_prices < 1) {
+        if (action.db_prices !== undefined) {
+          return {
+            ...state,
+            prices: state.prices
+              .concat(action.db_prices)
+              .sort((b, c) => b.id - c.id)
+          };
+          console.log(state.prices, "action prices_store_inside_if");
+        }
+      }
+      console.log(state.prices, "action prices_store_final");
     case "SWITCH_MODIFIERS":
       return {
         ...state,
@@ -874,7 +717,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         show_mods: state.show_mods === false ? true : false
       };
-
     case "SHOW_CREATE_MODIFIERS":
       return {
         ...state,
@@ -882,16 +724,15 @@ const reducer = (state = initialState, action) => {
       };
     case "CREATE_PRODUCT_SETUP":
       const id_temp_1 = state.products.length + 1;
-      console.log(id_temp_1);
+      console.log(id_temp_1, "id_temp_create_product_store");
       return {
         ...state,
         create_product: action.create_product,
         id_food: action.id_food,
         id_create_food: id_temp_1
       };
-
     case "SELECT_PRODUCT_SETUP":
-      console.log(state.actualizar_comp);
+      console.log(state.actualizar_comp, "select_product_store");
       return {
         ...state,
         create_product: action.create_product,
@@ -926,7 +767,6 @@ const reducer = (state = initialState, action) => {
         select_codeqr: action.select_codeqr,
         add_spot: action.add_spot
       };
-
     case "SELECT_SERVICE":
       return {
         ...state,
@@ -947,7 +787,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showMenu: action.showMenu,
-        show_food: state.data_menu.filter(d => d.id === action.id_food),
+        show_food: state.products.filter(d => d.id === action.id_food),
+        show_price: state.prices.filter(d => d.product.id === action.id_food),
         id_food: action.id_food
       };
     case "SELECT_CATEGORY":
@@ -1132,7 +973,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         orders: newArray_details
       };
-
     case "CLICK_REGISTER":
       return {
         ...state,
@@ -1148,18 +988,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         register_option: action.register_option
       };
-
     case "CLICK_NEXT":
       return {
         ...state,
-        stated_register: action.stated_register,
+        stated_register: action.stated_register
       };
     case "CLICK_RETURN":
       return {
         ...state,
-        stated_register: action.stated_register,
+        stated_register: action.stated_register
       };
-
     case "CLICK_PAID":
       const index_paid = state.orders.findIndex(
         orders => orders.id === action.user_paid
@@ -1173,7 +1011,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         orders: newArray_paid
       };
-
     default:
       return state;
   }
